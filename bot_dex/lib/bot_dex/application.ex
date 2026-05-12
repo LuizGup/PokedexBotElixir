@@ -9,12 +9,8 @@ defmodule BotDex.Application do
   def start(_type, _args) do
     children = [
       BotDex.Consumer
-      # Starts a worker by calling: BotDex.Worker.start_link(arg)
-      # {BotDex.Worker, arg}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: BotDex.Supervisor]
     Supervisor.start_link(children, opts)
   end

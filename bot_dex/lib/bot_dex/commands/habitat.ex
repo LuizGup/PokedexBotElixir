@@ -90,13 +90,15 @@ defmodule BotDex.Commands.Habitat do
   defp sortear_pokemon_do_tipo(tipo) do
     case HTTPoison.get(@pokeapi_type_url <> tipo) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body
-        |> Jason.decode!()
-        |> Map.get("pokemon", [])
-        |> Enum.random()
-        |> Map.get("pokemon")
-        |> Map.get("name")
-        |> then(&{:ok, &1})
+        nome =
+          body
+          |> Jason.decode!()
+          |> Map.get("pokemon", [])
+          |> Enum.random()
+          |> Map.get("pokemon")
+          |> Map.get("name")
+
+        {:ok, nome}
 
       _ ->
         {:erro, "⚠️ Falha ao buscar Pokémon do tipo #{tipo}."}

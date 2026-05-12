@@ -142,7 +142,7 @@ lib/bot_dex/
 | Concorrência | `!comparar pikachu charizard` | Tabela comparativa (2 chamadas paralelas) |
 | Persistência | `!capturar pikachu` → fechar → reabrir → `!bag` | Pokémon persistiu entre execuções |
 | Combinação de APIs | `!habitat fortaleza` | Cidade + temperatura + Pokémon |
-| Concorrência variável | `!bag` (com 5+ capturas) | Lista carrega rápido (paralelismo limitado) |
+| Listagem com API | `!bag` (com 3+ capturas) | Lista com ID e tipo de cada Pokémon |
 | CRUD completo | `!soltar pikachu` → `!bag` | Pokémon removido |
 
 ---
