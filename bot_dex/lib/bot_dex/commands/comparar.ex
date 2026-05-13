@@ -26,7 +26,7 @@ defmodule BotDex.Commands.Comparar do
     |> formatar_comparacao()
   end
 
-  defp processar_args(_), do: "⚠️ Uso correto: `!comparar <p1> <p2>`. Ex: `!comparar pikachu charizard`"
+  defp processar_args(_), do: "⚠️ Uso correto: `!comparar <p1> <p2>`. Ex: `!comparar pikachu mewtwo`"
 
   defp buscar(nome) do
     url = "#{@base_url}?q=#{URI.encode(nome |> String.trim() |> String.downcase())}&limit=5"
