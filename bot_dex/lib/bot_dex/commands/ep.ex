@@ -17,8 +17,9 @@ defmodule BotDex.Commands.Ep do
   end
 
   defp processar_args([temp_str, ep_str]) do
-    with {temp, ""} when temp > 0 <- Integer.parse(String.trim(temp_str)),
-         {ep, ""} when ep > 0 <- Integer.parse(String.trim(ep_str)) do
+    with {temp, _} <- Integer.parse(String.trim(temp_str)),
+         {ep, _}   <- Integer.parse(String.trim(ep_str)),
+         true       <- temp > 0 and ep > 0 do
       buscar_episodio(temp, ep)
     else
       _ -> "⚠️ Números inválidos. Use inteiros positivos. Ex: `!ep 1 25`"
