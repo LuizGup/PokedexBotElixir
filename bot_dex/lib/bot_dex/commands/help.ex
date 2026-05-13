@@ -26,7 +26,7 @@ defmodule BotDex.Commands.Help do
 
   ⚔️ `!comparar <p1> <p2>`
   Compara a popularidade de dois Pokémon no MyAnimeList.
-  _Ex:_ `!comparar pikachu charizard`
+  _Ex:_ `!comparar pikachu mewtwo`
 
   🎯 `!capturar <nome>`
   Captura um Pokémon e salva na sua bag (treinador.json).

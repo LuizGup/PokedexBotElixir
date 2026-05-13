@@ -8,6 +8,7 @@ defmodule BotDex.Commands.Comparar do
   alias Nostrum.Api.Message
 
   @base_url "https://api.jikan.moe/v4/characters"
+  # pikachu, mewtwo, mew, gyarados, ditto, abra
 
   def run(msg, args) do
     args
@@ -28,13 +29,23 @@ defmodule BotDex.Commands.Comparar do
   defp processar_args(_), do: "⚠️ Uso correto: `!comparar <p1> <p2>`. Ex: `!comparar pikachu charizard`"
 
   defp buscar(nome) do
-    url = "#{@base_url}?q=#{URI.encode(nome |> String.trim() |> String.downcase())}&limit=1"
+    url = "#{@base_url}?q=#{URI.encode(nome |> String.trim() |> String.downcase())}&limit=5"
 
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         case Jason.decode!(body) do
-          %{"data" => [primeiro | _]} -> {:ok, primeiro}
-          %{"data" => []} -> {:erro, "❌ **#{nome}** não encontrado no MyAnimeList."}
+          %{"data" => []} ->
+            {:erro, "❌ **#{nome}** não encontrado no MyAnimeList."}
+
+          %{"data" => resultados} ->
+            nome_lower = String.downcase(nome)
+            melhor = Enum.find(resultados, fn r ->
+              String.contains?(String.downcase(r["name"]), nome_lower)
+            end)
+            case melhor do
+              nil -> {:erro, "❌ **#{nome}** não encontrado no MyAnimeList."}
+              _   -> {:ok, melhor}
+            end
         end
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
@@ -49,8 +60,8 @@ defmodule BotDex.Commands.Comparar do
   defp formatar_comparacao([_, {:erro, msg}]), do: msg
 
   defp formatar_comparacao([{:ok, p1}, {:ok, p2}]) do
-    n1 = p1["name"]
-    n2 = p2["name"]
+    n1 = String.slice(p1["name"], 0, 15)
+    n2 = String.slice(p2["name"], 0, 15)
     f1 = p1["favorites"]
     f2 = p2["favorites"]
 

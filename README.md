@@ -71,7 +71,7 @@ Você deve ver `[info] READY` no terminal — o bot está online.
 | `!dex <nome>` | PokéAPI — `pokemon/{nome}` | `!dex pikachu` |
 | `!carta <nome>` | Pokémon TCG API — `cards?q=name:` | `!carta charizard` |
 | `!ep <temporada> <episodio>` | TVMaze — `shows/590/episodebynumber` | `!ep 1 25` |
-| `!comparar <p1> <p2>` | Jikan (MyAnimeList) — `characters?q=` (paralelo via `Task.async`) | `!comparar pikachu charizard` |
+| `!comparar <p1> <p2>` | Jikan (MyAnimeList) — `characters?q=` (paralelo via `Task.async`) | `!comparar pikachu mewtwo` |
 | `!capturar <nome>` | PokéAPI — `pokemon-form/{nome}` + persistência JSON local | `!capturar bulbasaur` |
 | `!habitat <cidade>` | Open-Meteo (`geocoding` + `forecast`) + PokéAPI — `type/{tipo}` (`with`) | `!habitat fortaleza` |
 
